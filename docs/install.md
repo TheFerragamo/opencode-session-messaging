@@ -89,10 +89,11 @@ curl -fsSL "$BASE/references/verification.md" -o "$DEST/references/verification.
 To make the skill available only inside one project, put it under that project's `.opencode/skills/` instead:
 
 ```bash
-git clone --depth 1 https://github.com/TheFerragamo/opencode-session-messaging.git /tmp/sm
+TMP=$(mktemp -d)
+git clone --depth 1 https://github.com/TheFerragamo/opencode-session-messaging.git "$TMP"
 mkdir -p .opencode/skills
-cp -R /tmp/sm/skills/session-messaging .opencode/skills/session-messaging
-rm -rf /tmp/sm
+cp -R "$TMP/skills/session-messaging" .opencode/skills/session-messaging
+rm -rf "$TMP"
 ```
 
 Commit it if your team should share it; add it to `.gitignore` if it is yours alone.
@@ -116,11 +117,13 @@ Expect an entry like:
 
 Check the `path` — it tells you which copy is actually live.
 
-To list skills as seen from a specific project directory, pass the location (the directory must be a recognized project, e.g. a git repository):
+To list skills as seen from a specific project directory, pass the location. The directory must be a recognized project — a git repository, for instance:
 
 ```bash
 opencode api get "/api/skill?location%5Bdirectory%5D=$PWD"
 ```
+
+For a directory the server has not seen before, the first response can come back empty while the project is registered. Run it a second time before concluding anything is wrong.
 
 ## Update
 
@@ -148,7 +151,7 @@ rm -rf .opencode/skills/session-messaging
 
 ## Troubleshooting
 
-**The skill is not in `/api/skill` yet.** The list is cached for a short time. It refreshes on its own — wait a moment and query again. If you have no session mid-run, `opencode service restart` forces it; this interrupts anything currently executing, so check `opencode api get /api/session/active` first.
+**The skill is not in `/api/skill` yet.** The list is cached briefly and refreshes on its own — wait a moment and query again. Two observed cases where a single query misleads you: a directory the server sees for the first time can return an empty list until it is registered, and a skill added after the last scan shows up a little later rather than instantly. If it still does not appear and no session is mid-run, `opencode service restart` forces a fresh scan; that interrupts anything currently executing, so check `opencode api get /api/session/active` first.
 
 **Two copies, and the wrong one is live.** When one ID exists in several skill directories, OpenCode keeps a single copy and silently drops the others. Observed precedence: canonical beats compatibility — `.opencode/skills` over `.claude/skills`, and `~/.config/opencode/skills` over `~/.agents/skills`. Delete the stale copy instead of relying on the ordering, and confirm with the `path` field.
 
@@ -162,4 +165,4 @@ rm -rf .opencode/skills/session-messaging
 
 ## Using it from other agents
 
-`SKILL.md` is a portable markdown skill, so other agents that read the same format can load it from their own skill directory (for example, Claude Code reads `~/.claude/skills`). The protocol itself only requires a shell tool and the `opencode2` CLI — it does not require the agent to be running inside OpenCode. Directory naming conventions differ between tools, so keep the directory named `session-messaging`.
+`SKILL.md` is a portable markdown skill, so other agents that read the same format can load it from their own skill directory (for example, Claude Code reads `~/.claude/skills`). The protocol itself only requires a shell tool and a V2 CLI on the agent's `PATH` — it does not require the agent to be running inside OpenCode. Directory naming conventions differ between tools, so keep the directory named `session-messaging`.

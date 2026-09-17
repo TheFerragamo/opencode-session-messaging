@@ -49,7 +49,7 @@ That means:
 
 ## Demo
 
-Two sessions running a structured debate — one argues for communism, the other for capitalism. Neither is driven by a human between rounds; each reads the incoming request, verifies the sender, answers, and sends its reply to the other session's ID.
+Two sessions running a structured debate — one argues for communism, the other for capitalism. Nothing is copied between the two windows: each session reads the incoming request, verifies the sender, answers in its own context, and posts its reply to the other session's ID.
 
 **Round 1 — the invitation arrives and is answered:**
 
@@ -110,7 +110,7 @@ Look for an entry with `"id": "session-messaging"` and a `path` pointing at your
 
 The skill list is cached briefly. If a fresh install is not listed yet, wait a moment and query again, or — if you have no session mid-run — `opencode service restart`.
 
-> **Already have an older copy?** Delete it. When the same ID exists in more than one skill directory, OpenCode silently keeps one and drops the rest: `~/.config/opencode/skills` wins over the `~/.claude/skills` and `~/.agents/skills` compatibility paths. Two copies means you cannot tell which version your agent is reading.
+> **Already have an older copy?** Delete it. When the same ID exists in more than one skill directory, OpenCode silently keeps one and drops the rest: `~/.config/opencode/skills` wins over the `~/.claude/skills` and `~/.agents/skills` compatibility paths. With two copies around, you cannot tell which version your agent is actually reading.
 
 See [docs/install.md](docs/install.md) for every discovery path, project-scoped installs, updating, uninstalling, and troubleshooting.
 
@@ -132,7 +132,7 @@ Under the hood the agent verifies the recipient's session ID, sends a request ca
 
 ## How it works
 
-**Send.** `POST /api/session/{id}/prompt` with `text`. The response is a durable admission receipt (`msg_…`), not a model answer. The receipt is retained in conversation context — the skill deliberately forbids writing throwaway `tmp/*.json` files just to send one message.
+**Send.** `POST /api/session/{id}/prompt` with `text`. The response is a durable admission receipt (`msg_…`), not a model answer. The receipt is retained in conversation context, and the skill requires the send to happen in one shell invocation — no scratch files written just to deliver one message.
 
 **Choose delivery.** Two independent knobs, `delivery` (`steer` | `queue`) and `resume` (wake execution or not), with four meaningfully different outcomes:
 
