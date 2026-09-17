@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="640" viewBox="0 0 1280 640" role="img" aria-label="session-messaging: cross-session messaging for OpenCode V2 agents">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0e0d0c"/>
+      <stop offset="1" stop-color="#070706"/>
+    </linearGradient>
+    <linearGradient id="panel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#181615"/>
+      <stop offset="1" stop-color="#131211"/>
+    </linearGradient>
+    <linearGradient id="reqline" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#fab283" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#fab283" stop-opacity="1"/>
+    </linearGradient>
+    <linearGradient id="repline" x1="1" y1="0" x2="0" y2="0">
+      <stop offset="0" stop-color="#7cb1e8" stop-opacity="0.15"/>
+      <stop offset="1" stop-color="#7cb1e8" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1280" height="640" fill="url(#bg)"/>
+  <rect x="0" y="0" width="1280" height="3" fill="#fab283" opacity="0.85"/>
+
+  <!-- title block -->
+  <g font-family="Menlo, monospace">
+    <text x="64" y="86" font-size="17" fill="#6f6a63" letter-spacing="3">OPENCODE V2 · SKILL</text>
+    <text x="64" y="140" font-size="46" font-weight="600" fill="#fab283">session-messaging</text>
+    <text x="64" y="176" font-size="19" fill="#a49c92">Let two OpenCode sessions talk to each other — request, inbox, wake, explicit reply.</text>
+  </g>
+
+  <!-- left session panel -->
+  <g>
+    <rect x="64" y="222" width="452" height="286" rx="10" fill="url(#panel)" stroke="#2b2825"/>
+    <rect x="64" y="222" width="452" height="34" rx="10" fill="#1f1d1b"/>
+    <rect x="64" y="246" width="452" height="10" fill="#1f1d1b"/>
+    <circle cx="86" cy="239" r="5" fill="#3b3733"/>
+    <circle cx="104" cy="239" r="5" fill="#3b3733"/>
+    <circle cx="122" cy="239" r="5" fill="#3b3733"/>
+    <g font-family="Menlo, monospace" font-size="13">
+      <text x="146" y="244" fill="#8d867c">OC | session A</text>
+      <text x="88" y="292" fill="#cfc9c0">&#8250; open a dispute with another</text>
+      <text x="88" y="312" fill="#cfc9c0">&#160; session in this project</text>
+      <text x="88" y="348" fill="#fab283">&#8594; Skill "session-messaging"</text>
+      <text x="88" y="384" fill="#6f6a63">$ opencode2 api post \</text>
+      <text x="88" y="404" fill="#6f6a63">&#160; &#160;"/api/session/$B/prompt"</text>
+      <text x="88" y="440" fill="#9ece6a">&#10003; receipt msg_0b0adc36&#8230;</text>
+      <text x="88" y="476" fill="#8d867c">waiting for reply &#8230;</text>
+    </g>
+  </g>
+
+  <!-- right session panel -->
+  <g>
+    <rect x="764" y="222" width="452" height="286" rx="10" fill="url(#panel)" stroke="#2b2825"/>
+    <rect x="764" y="222" width="452" height="34" rx="10" fill="#1f1d1b"/>
+    <rect x="764" y="246" width="452" height="10" fill="#1f1d1b"/>
+    <circle cx="786" cy="239" r="5" fill="#3b3733"/>
+    <circle cx="804" cy="239" r="5" fill="#3b3733"/>
+    <circle cx="822" cy="239" r="5" fill="#3b3733"/>
+    <g font-family="Menlo, monospace" font-size="13">
+      <text x="846" y="244" fill="#8d867c">OC | session B</text>
+      <text x="788" y="292" fill="#7cb1e8">[session-message request=d-001</text>
+      <text x="788" y="312" fill="#7cb1e8">&#160; reply_to=ses_A] state your case</text>
+      <text x="788" y="348" fill="#fab283">&#8594; Skill "session-messaging"</text>
+      <text x="788" y="384" fill="#6f6a63">$ opencode2 api post \</text>
+      <text x="788" y="404" fill="#6f6a63">&#160; &#160;"/api/session/$A/prompt"</text>
+      <text x="788" y="440" fill="#9ece6a">&#10003; reply sent · queue</text>
+      <text x="788" y="476" fill="#8d867c">idle · inbox empty</text>
+    </g>
+  </g>
+
+  <!-- request arrow: A -> B -->
+  <g font-family="Menlo, monospace">
+    <text x="640" y="288" font-size="13" fill="#fab283" text-anchor="middle">POST /prompt</text>
+    <line x1="524" y1="306" x2="742" y2="306" stroke="url(#reqline)" stroke-width="2"/>
+    <path d="M742 306 L732 301 L732 311 Z" fill="#fab283"/>
+    <text x="640" y="328" font-size="12" fill="#6f6a63" text-anchor="middle">delivery: steer | queue</text>
+  </g>
+
+  <!-- reply arrow: B -> A -->
+  <g font-family="Menlo, monospace">
+    <text x="640" y="424" font-size="13" fill="#7cb1e8" text-anchor="middle">explicit reply</text>
+    <line x1="742" y1="442" x2="524" y2="442" stroke="url(#repline)" stroke-width="2"/>
+    <path d="M524 442 L534 437 L534 447 Z" fill="#7cb1e8"/>
+    <text x="640" y="464" font-size="12" fill="#6f6a63" text-anchor="middle">request_id correlated</text>
+  </g>
+
+  <!-- middle stage badges -->
+  <g font-family="Menlo, monospace" font-size="11" text-anchor="middle">
+    <rect x="566" y="356" width="148" height="26" rx="13" fill="#17211c" stroke="#2f3a33"/>
+    <text x="640" y="373" fill="#9ece6a">inbox &#183; wake &#183; wait</text>
+  </g>
+
+  <!-- footer -->
+  <g font-family="Menlo, monospace" font-size="14">
+    <text x="64" y="566" fill="#6f6a63">accepted &#8594; delivered &#8594; completed &#8594; reply received</text>
+    <text x="1216" y="566" fill="#6f6a63" text-anchor="end">markdown skill &#183; no plugin &#183; verified on opencode 2.0.6</text>
+    <line x1="64" y1="586" x2="1216" y2="586" stroke="#211f1d"/>
+  </g>
+</svg>
