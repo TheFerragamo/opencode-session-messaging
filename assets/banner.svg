@@ -41,7 +41,7 @@
       <text x="88" y="292" fill="#cfc9c0">&#8250; open a dispute with another</text>
       <text x="88" y="312" fill="#cfc9c0">&#160; session in this project</text>
       <text x="88" y="348" fill="#fab283">&#8594; Skill "session-messaging"</text>
-      <text x="88" y="384" fill="#6f6a63">$ opencode2 api post \</text>
+      <text x="88" y="384" fill="#6f6a63">$ opencode api post \</text>
       <text x="88" y="404" fill="#6f6a63">&#160; &#160;"/api/session/$B/prompt"</text>
       <text x="88" y="440" fill="#9ece6a">&#10003; receipt msg_0b0adc36&#8230;</text>
       <text x="88" y="476" fill="#8d867c">waiting for reply &#8230;</text>
@@ -61,7 +61,7 @@
       <text x="788" y="292" fill="#7cb1e8">[session-message request=d-001</text>
       <text x="788" y="312" fill="#7cb1e8">&#160; reply_to=ses_A] state your case</text>
       <text x="788" y="348" fill="#fab283">&#8594; Skill "session-messaging"</text>
-      <text x="788" y="384" fill="#6f6a63">$ opencode2 api post \</text>
+      <text x="788" y="384" fill="#6f6a63">$ opencode api post \</text>
       <text x="788" y="404" fill="#6f6a63">&#160; &#160;"/api/session/$A/prompt"</text>
       <text x="788" y="440" fill="#9ece6a">&#10003; reply sent · queue</text>
       <text x="788" y="476" fill="#8d867c">idle · inbox empty</text>

@@ -63,6 +63,8 @@ Two sessions running a structured debate — one argues for communism, the other
 
 The skill is a plain directory with `SKILL.md` at its root. OpenCode discovers it automatically in any of its skill directories — pick whichever install style you prefer.
 
+> Commands here call the V2 CLI `opencode`. If V1 and V2 coexist on your machine, your V2 binary may be installed as **`opencode2`** — substitute it throughout, and confirm with `--version` rather than trusting the name.
+
 ### Option A — clone anywhere, symlink (recommended)
 
 Keeps the repo out of your config directory and updates with a single `git pull`.
