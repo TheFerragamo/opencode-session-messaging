@@ -51,6 +51,8 @@ That means:
 
 Two sessions running a structured debate — one argues for communism, the other for capitalism. Nothing is copied between the two windows: each session reads the incoming request, verifies the sender, answers in its own context, and posts its reply to the other session's ID.
 
+Both screenshots are full resolution — click to read the terminal text.
+
 **Round 1 — the invitation arrives and is answered:**
 
 ![Session A sends a dispute invitation to session B](assets/demo-01-request.png)
